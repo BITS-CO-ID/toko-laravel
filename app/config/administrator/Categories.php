@@ -4,7 +4,7 @@
  * Actors model config
  */
 return array(
-    'title' => 'Categories',
+    'title' => 'Product Categories',
     'single' => 'category',
     'model' => 'Category',
     /**

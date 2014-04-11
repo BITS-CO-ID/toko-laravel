@@ -11,13 +11,18 @@ return array(
      * The display columns
      */
     'columns' => array(
+        'category_name' => array(
+            'title' => "Products",
+            'relationship' => 'product', //this is the name of the Eloquent relationship method!
+            'select' => "(:table).name",
+        ),
         'name' => array(
             'title' => 'Name',
             'select' => "(:table).name",
         ),
         'path' => array(
             'title' => 'Image',
-            'output' => '<img src="'.asset('uploads/products/thumbs/small/(:value)').'" />',
+            'output' => '<img src="' . asset('uploads/products/thumbs/small/(:value)') . '" />',
             'sortable' => false,
         )
     ),
@@ -27,6 +32,11 @@ return array(
     'filters' => array(
         'name' => array(
             'title' => 'Name',
+        ),
+        'product' => array(
+            'type' => 'relationship',
+            'title' => 'Product',
+            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
         ),
     ),
 //

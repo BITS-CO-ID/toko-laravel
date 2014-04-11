@@ -8,7 +8,8 @@ class Product extends Eloquent {
         'name' => 'required|min:4',
         'price' => 'required|numeric',
         'discount' => 'digits_between:0,100',
-        'stock' => 'required|numeric'
+        'stock' => 'required|numeric',
+        'cat_id' => 'required'
     );
 
     public function setSlugAttribute($value) {
