@@ -48,6 +48,7 @@ return array(
      */
     'menu' => array(
         'E-Commerce' => array('products','images','categories'),
+        'Settings' => array('settings.site'),
     ),
     /**
      * The permission option is the highest-level authentication check that lets you define a closure that should return true if the current user

@@ -23,6 +23,10 @@ class Product extends Eloquent {
     public function getFormattedDiscountAttribute() {
         return $this->getAttribute('discount') . ' %';
     }
+    
+    public function getNetPriceAttribute() {
+        return 'Rp. ' .  number_format($this->getAttribute('price') - ($this->getAttribute('price') * floatval(intval($this->getAttribute('discount'))/100)),2);
+    }
 
     public function Categories() {
         return $this->belongsTo('Category', 'cat_id');

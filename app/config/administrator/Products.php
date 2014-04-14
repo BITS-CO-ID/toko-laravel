@@ -21,6 +21,9 @@ return array(
         'formatted_discount' => array(
             'title' => 'Discount',
         ),
+        'net_price' => array(
+            'title' => 'Net Price',
+        ),
         'stock' => array(
             'title' => 'Stock',
             'select' => "(:table).stock",
