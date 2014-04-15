@@ -47,9 +47,9 @@ return array(
      * 	)
      */
     'menu' => array(
-        'E-Commerce' => array('products','images','categories'),
+        'E-Commerce' => array('products', 'images', 'categories'),
         'Settings' => array('settings.site'),
-        'users',
+        'Users' => array('users', 'groups'),
     ),
     /**
      * The permission option is the highest-level authentication check that lets you define a closure that should return true if the current user
@@ -58,7 +58,12 @@ return array(
      * @type closure
      */
     'permission' => function() {
-return true;
+    if (Sentry::check()) {
+        $user = Sentry::getUser();
+        $admin = Sentry::findGroupByName('admin');
+        if ($user->inGroup($admin))
+            return true;
+    }
 },
     /**
      * This determines if you will have a dashboard (whose view you provide in the dashboard_view option) or a non-dashboard home
@@ -96,7 +101,7 @@ return true;
      *
      * @type string
      */
-    'logout_path' => false,
+    'logout_path' => URL::to('user/logout'),
     /**
      * This is the key of the return path that is sent with the redirection to your login_action. Session::get('redirect') will hold the return URL.
      *
