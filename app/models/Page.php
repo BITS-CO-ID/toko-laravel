@@ -1,14 +1,14 @@
 <?php
 
-class Category extends Baum\Node {
+class Page extends Baum\Node {
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'categories';
-    protected $fillable = array('name', 'slug');
+    protected $table = 'pages';
+    protected $fillable = array('name', 'slug', 'template', 'status');
     protected $parentColumn = 'parent_id';
     // 'lft' column name
     protected $leftColumn = 'lft';
@@ -20,7 +20,8 @@ class Category extends Baum\Node {
     protected $guarded = array('id', 'parent_id', 'lft', 'rgt', 'depth');
     public static $rules = array(
         'name' => 'required',
-        'slug' => 'required|unique:categories,slug',
+        'slug' => 'required|unique:pages,slug',
+        'template' => 'required',
     );
 
     /**
@@ -31,16 +32,13 @@ class Category extends Baum\Node {
     public function setSlugAttribute($value) {
         $this->attributes['slug'] = getSlug($value);
     }
+
     public function getAdsAttribute() {
         $data = array(
             'name' => $this->attributes['name'],
             'depth' => $this->attributes['depth'],
         );
         return $data;
-        
-    }
-    public function products() {
-        return $this->hasMany('Product');
     }
 
 }

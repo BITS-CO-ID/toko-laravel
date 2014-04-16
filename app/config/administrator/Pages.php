@@ -4,9 +4,9 @@
  * Actors model config
  */
 return array(
-    'title' => 'Product Categories',
-    'single' => 'category',
-    'model' => 'Category',
+    'title' => 'Pages',
+    'single' => 'page',
+    'model' => 'Page',
     /**
      * The display columns
      */
@@ -15,19 +15,22 @@ return array(
             'title' => 'Name',
             'output' => function($value) {
         return item_depth($value['depth']) . $value['name'];
-    },
+    }
         ),
         'slug' => array(
             'title' => 'Slug',
-            'select' => "(:table).slug",
             'sortable' => false,
+        ),
+        'template' => array(
+            'title' => 'Template',
+                        'sortable' => false,
         ),
         'parent' => array(
             'title' => 'Parent',
             'output' => function($value) {
         return $value['name'];
     }, //what column or accessor on the other table you want to use to represent this object
-            'sortable' => false,
+                        'sortable' => false,
         )
     ),
     /**
@@ -63,6 +66,15 @@ return array(
             'type' => 'relationship',
             'title' => 'Parent',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+        ),
+        'template' => array(
+            'type' => 'enum',
+            'title' => 'Template',
+            'options' => array('Winter', 'Spring', 'Summer', 'Fall'),
+        ),
+        'status' => array(
+            'type' => 'bool',
+            'title' => 'Active',
         )
     ),
     'sort' => array(

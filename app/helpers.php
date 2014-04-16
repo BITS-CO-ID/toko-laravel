@@ -19,3 +19,7 @@ function getSlug($text) {
     }
     return $text;
 }
+
+function item_depth($depth) {
+    return str_repeat('<i class="fa fa-level-up fa-rotate-90"></i>&nbsp&nbsp', $depth);
+}
