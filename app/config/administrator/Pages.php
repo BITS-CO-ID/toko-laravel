@@ -70,7 +70,7 @@ return array(
         'template' => array(
             'type' => 'enum',
             'title' => 'Template',
-            'options' => array('Winter', 'Spring', 'Summer', 'Fall'),
+            'options' => array('Home', 'Page', 'About', 'News'),
         ),
         'status' => array(
             'type' => 'bool',
