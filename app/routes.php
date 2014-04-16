@@ -32,13 +32,14 @@ Route::post('user/login', function() {
 
     return Redirect::intended('admin');
 });
-Route::get('user/logout',  function() {
+Route::get('user/logout', function() {
     Sentry::logout();
 
     return Redirect::to('user/login');
 });
-Route::post('user/logout',  function() {
+Route::post('user/logout', function() {
     Sentry::logout();
 
     return Redirect::to('user/login');
 });
+

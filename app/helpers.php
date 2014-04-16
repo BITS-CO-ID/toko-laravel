@@ -23,3 +23,15 @@ function getSlug($text) {
 function item_depth($depth) {
     return str_repeat('<i class="fa fa-level-up fa-rotate-90"></i>&nbsp&nbsp', $depth);
 }
+
+function getOptions($name) {
+    $path = storage_path() . '/administrator_settings/';
+    $path = rtrim($path, '/') . '/';
+    $file = $path . 'site.json';
+    $data = array();
+    if (file_exists($file)) {
+        $json = file_get_contents($file);
+        $saveData = json_decode($json);
+    }
+    return $saveData->$name;
+}
