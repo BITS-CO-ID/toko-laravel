@@ -15,13 +15,17 @@ function getSlug($text) {
     $text = strtolower($text);
     $text = preg_replace('~[^-\w]+~', '', $text);
     if (empty($text)) {
-        return 'n-a';
+        return '/';
     }
     return $text;
 }
 
 function item_depth($depth) {
-    return str_repeat('<i class="fa fa-level-up fa-rotate-90"></i>&nbsp&nbsp', $depth);
+    $label = '';
+    if($depth != 0){
+        $label = '<i class="fa fa-level-up fa-rotate-90"></i>&nbsp&nbsp';
+    }
+    return str_repeat('&nbsp&nbsp', $depth).$label;
 }
 
 function getOptions($name) {

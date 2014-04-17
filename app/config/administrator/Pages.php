@@ -23,14 +23,14 @@ return array(
         ),
         'template' => array(
             'title' => 'Template',
-                        'sortable' => false,
+            'sortable' => false,
         ),
         'parent' => array(
             'title' => 'Parent',
             'output' => function($value) {
         return $value['name'];
     }, //what column or accessor on the other table you want to use to represent this object
-                        'sortable' => false,
+            'sortable' => false,
         )
     ),
     /**
@@ -80,5 +80,36 @@ return array(
     'sort' => array(
         'field' => 'lft',
         'direction' => 'asc',
+    ),
+    'actions' => array(
+//Ordering an item up
+        'move_up' => array(
+            'title' => 'Move Up',
+            'messages' => array(
+                'active' => 'Moving up...',
+                'success' => 'Pages Saved',
+                'error' => 'There was an error while moving up page',
+            ),
+            //the settings data is passed to the closure and saved if a truthy response is returned
+            'action' => function($data) {
+        $data->moveLeft();
+
+        return true;
+    }
+        ),
+        'move_down' => array(
+            'title' => 'Move Down',
+            'messages' => array(
+                'active' => 'Moving Down...',
+                'success' => 'Page Saved',
+                'error' => 'There was an error while moving down page',
+            ),
+            //the settings data is passed to the closure and saved if a truthy response is returned
+            'action' => function($data) {
+        $data->moveRight();
+
+        return true;
+    }
+        ),
     ),
 );
