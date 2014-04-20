@@ -47,7 +47,8 @@ return array(
      * 	)
      */
     'menu' => array(
-        'E-Commerce' => array('products', 'images', 'categories'),
+        'E-Commerce' => array('products','product_attr','values', 'images', 'categories'),
+        'sliders',
         'pages',
         'Users' => array('users', 'groups'),
         'Settings' => array('settings.site'),

@@ -32,7 +32,12 @@ return array(
             'title' => "Category",
             'relationship' => 'Categories', //this is the name of the Eloquent relationship method!
             'select' => "(:table).name",
-        )
+        ),
+        'attribute_name' => array(
+            'title' => 'Options',
+            'relationship' => 'attributes',
+            'select' => "GROUP_CONCAT((:table).name)",
+        ),
     ),
     /**
      * The filter set
@@ -62,7 +67,12 @@ return array(
             'type' => 'relationship',
             'title' => 'Category',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
-        )
+        ),
+        'attributes' => array(
+            'type' => 'relationship',
+            'title' => 'Options',
+            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+        ),
     ),
 //
 //	/**
@@ -99,6 +109,11 @@ return array(
         'categories' => array(
             'type' => 'relationship',
             'title' => 'Category',
+            'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+        ),
+        'attributes' => array(
+            'type' => 'relationship',
+            'title' => 'Attributes',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
         ),
     ),

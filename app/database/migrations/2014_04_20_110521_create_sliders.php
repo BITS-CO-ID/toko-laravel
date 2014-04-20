@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCatProduk extends Migration {
+class CreateSliders extends Migration {
 
     /**
      * Run the migrations.
@@ -12,24 +12,18 @@ class CreateCatProduk extends Migration {
      */
     public function up() {
         //
-        Schema::create('categories', function($table) {
+        Schema::create('sliders', function($table) {
             $table->increments('id');
             $table->text('name');
-            $table->text('description');
-            $table->string('slug')->unique();
+            $table->text('link');
+            $table->text('image');
+            $table->tinyinteger('status')->default(0);
             $table->integer('parent_id')->nullable();
             $table->integer('lft')->nullable();
             $table->integer('rgt')->nullable();
             $table->integer('depth')->nullable();
-
-            // Add needed columns here (f.ex: name, slug, path, etc.)
-            // $table->string('name', 255);
-
             $table->timestamps();
 
-            // Default indexes
-            // Add indexes on parent_id, lft, rgt columns by default. Of course,
-            // the correct ones will depend on the application and use case.
             $table->index('parent_id');
             $table->index('lft');
             $table->index('rgt');
@@ -43,7 +37,7 @@ class CreateCatProduk extends Migration {
      */
     public function down() {
         //
-        Schema::drop('categories');
+        Schema::drop('sliders');
     }
 
 }

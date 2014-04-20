@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProducts extends Migration {
+class CreateProductAttr extends Migration {
 
     /**
      * Run the migrations.
@@ -12,15 +12,10 @@ class CreateProducts extends Migration {
      */
     public function up() {
         //
-        Schema::create('products', function($table) {
+        Schema::create('product_attr', function($table) {
             $table->increments('id');
             $table->text('name');
-            $table->string('slug')->unique();
-            $table->text('description');
-            $table->integer('price');
-            $table->integer('discount')->nullable();
-            $table->integer('stock')->nullable();
-            $table->integer('cat_id');
+            $table->integer('product_id');
 
             // Add needed columns here (f.ex: name, slug, path, etc.)
             // $table->string('name', 255);
@@ -36,7 +31,7 @@ class CreateProducts extends Migration {
      */
     public function down() {
         //
-        Schema::drop('products');
+        Schema::drop('product_attr');
     }
 
 }

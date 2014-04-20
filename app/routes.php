@@ -43,3 +43,8 @@ Route::post('user/logout', function() {
     return Redirect::to('user/login');
 });
 
+Route::get('{model}/a/file', array(
+    'as' => 'admin_display_file',
+    'uses' => 'Frozennode\Administrator\AdminController@displayFile'
+));
+
