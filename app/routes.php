@@ -12,7 +12,11 @@
  */
 // front Routes
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@home'));
-Route::any('{uri}', 'PagesController@view');
+Route::get('/categories',function(){
+    return 1;
+    
+});
+Route::get('/{uri}', 'PagesController@view');
 
 // Admin routes
 Route::get('user/login', function() {
