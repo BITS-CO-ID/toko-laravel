@@ -177,7 +177,7 @@ ul.categorymenu > li > div > ul > li > div ul li:hover > div { display: table; w
 .thumbnail .sale { position:absolute; top:10px; left:-2px; background:url(../img/sale.png) no-repeat 0 0; height:45px; width:68px; float:left; overflow:hidden; display:block; text-indent:9999px }
 .thumbnail .new { position:absolute; top:10px; left:-2px; background:url(../img/new.png) no-repeat 0 0; height:45px; width:68px; float:left; overflow:hidden; display:block; text-indent:9999px }
 .thumbnail .offer, .thumbnail .sale, .thumbnail .new { z-index:999 }
-.thumbnail .pricetag { width:221px; height:37px; background:url(../img/pricetag.png) no-repeat right 0; margin-top:8px; position:relative; padding:9px 9px 9px 30px; margin-bottom:20px }
+.thumbnail .pricetag { width:250px; height:37px; background:url(../img/pricetag.png) no-repeat right 0; margin-top:8px; position:relative; padding:9px 9px 9px 10px; margin-bottom:20px }
 .thumbnail .pricetag .spiral { position:absolute; top:-19px; left:10px; background:url(../img/spiral.png) no-repeat right 0; height:50px; width:35px }
 .thumbnail a.productcart { background: #f25c27 url(../img/prodcutcart.png) right 7px no-repeat; color:#fff; float:right; padding:8px 27px 8px 8px; font-size:13px; }
 .thumbnail a.productcart:hover { background: #db420e url(../img/prodcutcart.png) right 7px no-repeat; }

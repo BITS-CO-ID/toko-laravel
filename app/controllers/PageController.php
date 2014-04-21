@@ -18,6 +18,8 @@ class PagesController extends \BaseController {
         if (substr($uri, 0, 1) != '/') {
             $uri = $uri;
         }
+        if($uri == '')
+            $uri = 'home';
         $this->data['page'] = $this->page->where('slug', $uri)->first();
         if (!$this->data['page']) {
             App::abort(404);
@@ -31,7 +33,7 @@ class PagesController extends \BaseController {
     }
 
     private function _home() {
-        $this->data['products'] = Product::all();
+        $this->data['products'] = Product::take(8)->get();
     }
     
     private function _page() {
