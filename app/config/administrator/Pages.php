@@ -47,7 +47,16 @@ return array(
             'type' => 'relationship',
             'title' => 'Parent',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
-        )
+        ),
+        'status' => array(
+            'type' => 'bool',
+            'title' => 'Active',
+        ),
+        'template' => array(
+            'type' => 'enum',
+            'title' => 'Template',
+            'options' => array('Home', 'Page', 'About', 'News'),
+        ),
     ),
 //
 //	/**
@@ -66,6 +75,10 @@ return array(
             'type' => 'relationship',
             'title' => 'Parent',
             'name_field' => 'name', //what column or accessor on the other table you want to use to represent this object
+        ),
+        'description' => array(
+            'type' => 'wysiwyg',
+            'title' => 'Description',
         ),
         'template' => array(
             'type' => 'enum',
@@ -112,4 +125,5 @@ return array(
     }
         ),
     ),
+    'form_width' => 600,
 );
