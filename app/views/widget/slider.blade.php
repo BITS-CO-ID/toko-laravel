@@ -1,18 +1,8 @@
-    <div class="container">
-      <div class="flexslider" id="mainslider">
+
+<div class="container">
+    <div class="flexslider" id="mainslider">
         <ul class="slides">
-          <li>
-            <img src="{{asset('front/img/banner1.jpg') }}" alt="" />
-          </li>
-          <li>
-            <img src="{{asset('front/img/banner2.jpg') }}" alt="" />
-          </li>
-          <li>
-            <img src="{{asset('front/img/banner1.jpg') }}" alt="" />
-          </li>
-          <li>
-            <img src="{{asset('front/img/banner2.jpg') }}" alt="" />
-          </li>
+            {{ getSliders() }}
         </ul>
-      </div>
     </div>
+</div>

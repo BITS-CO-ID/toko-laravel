@@ -57,7 +57,7 @@ return array(
             'sizes' => array(
                 array(65, 57, 'crop', public_path() . '/uploads/sliders/thumbs/small/', 100),
                 array(220, 138, 'landscape', public_path() . '/uploads/sliders/thumbs/medium/', 100),
-                array(383, 276, 'fit', public_path() . '/uploads/sliders/thumbs/full/', 100)
+                array(1170, 524, 'exact', public_path() . '/uploads/sliders/thumbs/full/', 100)
             )
         ),
     ),

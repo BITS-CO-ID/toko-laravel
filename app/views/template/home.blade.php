@@ -37,10 +37,14 @@
         <ul class="thumbnails">
             @foreach($products as $product)
             <li class="col-lg-3  col-sm-6">
-                <a class="prdocutname" href="product.html">{{ $product->name }}</a>
+                <a class="prdocutname" href="{{ route('showproduct', $product->slug) }}">{{ $product->name }}</a>
                 <div class="thumbnail">
                     <span class="sale tooltip-test">Sale</span>
-                    <a href="#"><img alt="" src="{{ asset('uploads/products/thumbs/full/'.$product->images[0]->path) }}"></a>
+                    @if(count($product->images))
+                    <a href="#"><img alt="" src="{{ asset('uploads/products/thumbs/full/'.$product->images->first()->path) }}"></a>
+                    @else 
+                    <a href="#"><img alt="" src="http://placehold.it/270x350"></a>
+                    @endif
                     <div class="shortlinks">
                         <a class="details" href="#">DETAILS</a>
                         <a class="wishlist" href="#">WISHLIST</a>
@@ -69,7 +73,11 @@
             <li class="col-lg-3 col-sm-6">
                 <a class="prdocutname" href="product.html">{{ $product->name }}</a>
                 <div class="thumbnail">
-                    <a href="#"><img alt="" src="{{ asset('uploads/products/thumbs/full/'.$product->images[0]->path) }}"></a>
+                    @if(count($product->images))
+                    <a href="#"><img alt="" src="{{ asset('uploads/products/thumbs/medium/'.$product->images->first()->path) }}"></a>
+                    @else
+                    <a href="#"><img alt="" src="http://placehold.it/350x270"></a>
+                    @endif
                     <div class="shortlinks">
                         <a class="details" href="#">DETAILS</a>
                         <a class="wishlist" href="#">WISHLIST</a>
@@ -90,7 +98,7 @@
 </section>
 
 <!-- Section  Banner Start-->
-<section class="container smbanner">
+<!--<section class="container smbanner">
     <div class="row">
         <div class="col-lg-3 col-sm-6"><a href="#"><img src="img/smbanner.jpg" alt="" title=""></a>
         </div>
@@ -101,11 +109,11 @@
         <div class="col-lg-3 col-sm-6"><a href="#"><img src="img/smbanner.jpg" alt="" title=""></a>
         </div>
     </div>
-</section>
+</section>-->
 <!-- Section  End-->
 
 <!-- Popular Brands-->
-<section id="popularbrands" class="container mt40">
+<!--<section id="popularbrands" class="container mt40">
     <h1 class="heading1"><span class="maintext">Popular Brands</span><span class="subtext"> See Our  Popular Brands</span></h1>
     <div class="brandcarousalrelative">
         <ul id="brandcarousal">
@@ -126,7 +134,7 @@
         <a id="prev" class="prev" href="#">&lt;</a>
         <a id="next" class="next" href="#">&gt;</a>
     </div>
-</section>
+</section>-->
 
 <!-- Newsletter Signup-->
 <section id="newslettersignup" class="mt40">

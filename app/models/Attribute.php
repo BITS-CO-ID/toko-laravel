@@ -13,7 +13,7 @@ class Attribute extends Eloquent {
     }
     
     public function Values(){
-        return $this->hasMany('Attrval');
+        return $this->hasMany('Attrval','attr_id');
     }
 
 }

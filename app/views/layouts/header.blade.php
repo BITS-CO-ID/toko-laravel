@@ -1,7 +1,7 @@
 <div class="headerstrip">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12"> <a href="index.html" class="logo pull-left"><img src="{{ getOptions('logo') }}" alt="SimpleOne" title="SimpleOne"></a> 
+                <div class="col-lg-12"> <a href="index.html" class="logo pull-left"><img src="{{ asset(getOptions('logo')) }}" alt="SimpleOne" title="SimpleOne"></a> 
                     <!-- Top Nav Start -->
                     <div class="pull-left">
                         <div class="navbar" id="topnav">

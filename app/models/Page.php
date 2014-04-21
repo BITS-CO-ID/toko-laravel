@@ -32,6 +32,10 @@ class Page extends Baum\Node {
     public function setSlugAttribute($value) {
         $this->attributes['slug'] = getSlug($value);
     }
+    
+    public function getSlugUrlAttribute(){
+        return url($this->attributes['slug']);
+    }
 
     public function getAdsAttribute() {
         $data = array(

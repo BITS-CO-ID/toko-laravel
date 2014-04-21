@@ -52,3 +52,12 @@ function menu() {
 
     return Menu::render('main');
 }
+
+function getSliders() {
+    $html = '';
+    $data = Slider::get();
+    foreach ($data as $d) {
+        $html .= '<li><img src="'.asset("uploads/sliders/thumbs/full/".$d->image).'" alt="" /></li>';
+    }
+    return $html;
+}

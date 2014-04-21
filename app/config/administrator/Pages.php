@@ -17,8 +17,8 @@ return array(
         return item_depth($value['depth']) . $value['name'];
     }
         ),
-        'slug' => array(
-            'title' => 'Slug',
+        'slug_url' => array(
+            'title' => 'URL',
             'sortable' => false,
         ),
         'template' => array(

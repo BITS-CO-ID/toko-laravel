@@ -11,11 +11,13 @@
   |
  */
 // front Routes
-Route::get('/', array('as' => 'home', 'uses' => 'HomeController@home'));
+Route::get('/', array('as' => 'home', 'uses' => 'PagesController@view'));
 Route::get('/categories',function(){
     return 1;
     
 });
+Route::get('/products',array('as' => 'products' ,'uses' => 'ProductController@index'));
+Route::get('/products/{slug}',array('as' => 'showproduct','uses' => 'ProductController@show'));
 Route::get('/{uri}', 'PagesController@view');
 
 // Admin routes
