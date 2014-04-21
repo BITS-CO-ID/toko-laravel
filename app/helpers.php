@@ -22,10 +22,10 @@ function getSlug($text) {
 
 function item_depth($depth) {
     $label = '';
-    if($depth != 0){
+    if ($depth != 0) {
         $label = '<i class="fa fa-level-up fa-rotate-90"></i>&nbsp&nbsp';
     }
-    return str_repeat('&nbsp&nbsp', $depth).$label;
+    return str_repeat('&nbsp&nbsp', $depth) . $label;
 }
 
 function getOptions($name) {
@@ -38,4 +38,17 @@ function getOptions($name) {
         $saveData = json_decode($json);
     }
     return $saveData->$name;
+}
+
+function menu() {
+    $menus = Page::all();
+    foreach ($menus as $menu) {
+        if ($menu->parent_id != NULL) {
+            Menu::addItem(array('text' => $menu->name, 'URL' => url($menu->slug), 'reference' => $menu->id, 'class' => 'home-icon', 'parent' => $menu->parent_id, 'weight' => $menu->lft))->toMenu('main');
+        } else {
+            Menu::addItem(array('text' => $menu->name, 'URL' => url($menu->slug), 'reference' => $menu->id, 'class' => 'home-icon', 'weight' => $menu->lft))->toMenu('main');
+        }
+    }
+
+    return Menu::render('main');
 }

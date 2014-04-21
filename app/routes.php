@@ -10,10 +10,11 @@
   | and give it the Closure to execute when that URI is requested.
   |
  */
+// front Routes
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@home'));
+Route::any('{uri}', 'PagesController@view');
 
-Route::get('/', function() {
-    return View::make('hello');
-});
+// Admin routes
 Route::get('user/login', function() {
     return View::make('login');
 });
