@@ -7,49 +7,23 @@
             <!-- Left Image-->
             <div class="col-lg-5">
                 <ul class="thumbnails mainimage">
+                    @foreach ($product->images as $image)
                     <li>
-                        <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product1big.jpg">
-                            <img src="img/product1big.jpg" alt="" title="">
+                        <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="{{ asset('uploads/products/originals/'.$image->path) }}">
+                            <img src="{{ asset('uploads/products/thumbs/full/'.$image->path) }}" alt="" title="">
                         </a>
                     </li>
-                    <li>
-                        <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product2big.jpg">
-                            <img  src="img/product2big.jpg" alt="" title="">
-                        </a>
-                    </li>
-                    <li>
-                        <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product1big.jpg">
-                            <img src="img/product1big.jpg" alt="" title="">
-                        </a>
-                    </li>
-                    <li>
-                        <a  rel="position: 'inside' , showTitle: false, adjustX:-4, adjustY:-4" class="thumbnail cloud-zoom" href="img/product2big.jpg">
-                            <img  src="img/product2big.jpg" alt="" title="">
-                        </a>
-                    </li>
+                    @endforeach
                 </ul>
                 <span>Mouse move on Image to zoom</span>
                 <ul class="thumbnails mainimage">
+                    @foreach ($product->images as $image)
                     <li class="producthtumb">
                         <a class="thumbnail" >
-                            <img  src="img/product1.jpg" alt="" title="">
+                            <img  src="{{ asset('uploads/products/thumbs/full/'.$image->path) }}" alt="" title="">
                         </a>
                     </li>
-                    <li class="producthtumb">
-                        <a class="thumbnail" >
-                            <img  src="img/product2.jpg" alt="" title="">
-                        </a>
-                    </li>
-                    <li class="producthtumb">
-                        <a class="thumbnail" >
-                            <img  src="img/product1.jpg" alt="" title="">
-                        </a>
-                    </li>
-                    <li class="producthtumb">
-                        <a class="thumbnail" >
-                            <img  src="img/product2.jpg" alt="" title="">
-                        </a>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
             <!-- Right Details-->
@@ -274,7 +248,7 @@
     </div>
 </section>
 <!-- Popular Brands-->
-<section id="popularbrands" class="container">
+<!--<section id="popularbrands" class="container">
     <h1 class="heading1"><span class="maintext">Popular Brands</span><span class="subtext"> See Our  Popular Brands</span></h1>
     <div class="brandcarousalrelative">
         <ul id="brandcarousal">
@@ -295,5 +269,5 @@
         <a id="prev" class="prev" href="#">&lt;</a>
         <a id="next" class="next" href="#">&gt;</a>
     </div>
-</section>
+</section>-->
 @stop
