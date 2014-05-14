@@ -46,6 +46,7 @@ class ProductController extends \BaseController {
     public function show($slug) {
         //
         $this->data['product'] = $this->product->where('slug', $slug)->first();
+        $this->data['related'] = $this->product->take(4)->orderBy(DB::raw('RAND()'))->where('cat_id', $this->data['product']->cat_id)->get();
         $this->layout->content = View::make('products.product_details', $this->data);
     }
 

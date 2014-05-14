@@ -8,7 +8,8 @@
         "frozennode/administrator": "dev-master",
         "baum/baum": "~1.0",
         "cartalyst/sentry": "2.1.*",
-        "purposemedia/menu" : "dev-master"
+        "purposemedia/menu" : "dev-master",
+        "gloudemans/shoppingcart": "dev-master"
 
     },
     "autoload": {

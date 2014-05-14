@@ -41,14 +41,14 @@
                 <div class="thumbnail">
                     <span class="sale tooltip-test">Sale</span>
                     @if(count($product->images))
-                    <a href="#"><img alt="" src="{{ asset('uploads/products/thumbs/full/'.$product->images->first()->path) }}"></a>
+                    <a href="{{ route('showproduct', $product->slug) }}"><img alt="" src="{{ asset('uploads/products/thumbs/full/'.$product->images->first()->path) }}"></a>
                     @else 
-                    <a href="#"><img alt="" src="http://placehold.it/270x350"></a>
+                    <a href="{{ route('showproduct', $product->slug) }}"><img alt="" src="http://placehold.it/270x350"></a>
                     @endif
                     <div class="shortlinks">
                         <a class="details" href="#">DETAILS</a>
-                        <a class="wishlist" href="#">WISHLIST</a>
-                        <a class="compare" href="#">COMPARE</a>
+<!--                        <a class="wishlist" href="#">WISHLIST</a>
+                        <a class="compare" href="#">COMPARE</a>-->
                     </div>
                     <div class="pricetag">
                         <span class="spiral"></span><a href="#" class="productcart">ADD TO CART</a>
@@ -71,17 +71,17 @@
         <ul class="thumbnails">
             @foreach($products as $product)
             <li class="col-lg-3 col-sm-6">
-                <a class="prdocutname" href="product.html">{{ $product->name }}</a>
+                <a class="prdocutname" href="{{ route('showproduct', $product->slug) }}">{{ $product->name }}</a>
                 <div class="thumbnail">
                     @if(count($product->images))
-                    <a href="#"><img alt="" src="{{ asset('uploads/products/thumbs/medium/'.$product->images->first()->path) }}"></a>
+                    <a href="{{ route('showproduct', $product->slug) }}"><img alt="" src="{{ asset('uploads/products/thumbs/medium/'.$product->images->first()->path) }}"></a>
                     @else
-                    <a href="#"><img alt="" src="http://placehold.it/350x270"></a>
+                    <a href="{{ route('showproduct', $product->slug) }}"><img alt="" src="http://placehold.it/350x270"></a>
                     @endif
                     <div class="shortlinks">
-                        <a class="details" href="#">DETAILS</a>
-                        <a class="wishlist" href="#">WISHLIST</a>
-                        <a class="compare" href="#">COMPARE</a>
+                        <a class="details" href="{{ route('showproduct', $product->slug) }}">DETAILS</a>
+<!--                        <a class="wishlist" href="#">WISHLIST</a>
+                        <a class="compare" href="#">COMPARE</a>-->
                     </div>
                     <div class="pricetag">
                         <span class="spiral"></span><a href="#" class="productcart">ADD TO CART</a>

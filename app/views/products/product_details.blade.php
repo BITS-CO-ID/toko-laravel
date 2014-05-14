@@ -170,80 +170,30 @@
     <div class="container">
         <h1 class="heading1"><span class="maintext">Related Products</span><span class="subtext"> See Our Most featured Products</span></h1>
         <ul class="thumbnails">
+            @foreach ($related as $rel_pro)
             <li class="col-lg-3 col-sm-3">
-                <a class="prdocutname" href="product.html">Product Name Here</a>
+                <a class="prdocutname" href="{{ route('showproduct', $rel_pro->slug) }}">{{ $rel_pro->name }}</a>
                 <div class="thumbnail">
-                    <span class="sale tooltip-test">Sale</span>
-                    <a href="#"><img alt="" src="img/product1.jpg"></a>
+                    @if(count($rel_pro->images))
+                    <a href="{{ route('showproduct', $rel_pro->slug) }}"><img alt="" src="{{ asset('uploads/products/thumbs/full/'.$rel_pro->images->first()->path) }}"></a>
+                    @else 
+                    <a href="{{ route('showproduct', $rel_pro->slug) }}"><img alt="" src="http://placehold.it/270x350"></a>
+                    @endif
                     <div class="shortlinks">
-                        <a class="details" href="#">DETAILS</a>
-                        <a class="wishlist" href="#">WISHLIST</a>
-                        <a class="compare" href="#">COMPARE</a>
+                        <a class="details" href="{{ route('showproduct', $rel_pro->slug) }}">DETAILS</a>
+<!--                        <a class="wishlist" href="#">WISHLIST</a>
+                        <a class="compare" href="#">COMPARE</a>-->
                     </div>
                     <div class="pricetag">
                         <span class="spiral"></span><a href="#" class="productcart">ADD TO CART</a>
                         <div class="price">
-                            <div class="pricenew">$4459.00</div>
-                            <div class="priceold">$5000.00</div>
+                            <div class="pricenew">{{ $rel_pro->net_price }}</div>
+                            <div class="priceold">{{ $rel_pro->formatted_price }}</div>
                         </div>
                     </div>
                 </div>
             </li>
-            <li class="col-lg-3 col-sm-3">
-                <a class="prdocutname" href="product.html">Product Name Here</a>
-                <div class="thumbnail">
-                    <a href="#"><img alt="" src="img/product2.jpg"></a>
-                    <div class="shortlinks">
-                        <a class="details" href="#">DETAILS</a>
-                        <a class="wishlist" href="#">WISHLIST</a>
-                        <a class="compare" href="#">COMPARE</a>
-                    </div>
-                    <div class="pricetag">
-                        <span class="spiral"></span><a href="#" class="productcart">ADD TO CART</a>
-                        <div class="price">
-                            <div class="pricenew">$4459.00</div>
-                            <div class="priceold">$5000.00</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="col-lg-3 col-sm-3">
-                <a class="prdocutname" href="product.html">Product Name Here</a>
-                <div class="thumbnail">
-                    <span class="offer tooltip-test" >Offer</span>
-                    <a href="#"><img alt="" src="img/product1.jpg"></a>
-                    <div class="shortlinks">
-                        <a class="details" href="#">DETAILS</a>
-                        <a class="wishlist" href="#">WISHLIST</a>
-                        <a class="compare" href="#">COMPARE</a>
-                    </div>
-                    <div class="pricetag">
-                        <span class="spiral"></span><a href="#" class="productcart">ADD TO CART</a>
-                        <div class="price">
-                            <div class="pricenew">$4459.00</div>
-                            <div class="priceold">$5000.00</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="col-lg-3 col-sm-3">
-                <a class="prdocutname" href="product.html">Product Name Here</a>
-                <div class="thumbnail">
-                    <a href="#"><img alt="" src="img/product2.jpg"></a>
-                    <div class="shortlinks">
-                        <a class="details" href="#">DETAILS</a>
-                        <a class="wishlist" href="#">WISHLIST</a>
-                        <a class="compare" href="#">COMPARE</a>
-                    </div>
-                    <div class="pricetag">
-                        <span class="spiral"></span><a href="#" class="productcart">ADD TO CART</a>
-                        <div class="price">
-                            <div class="pricenew">$4459.00</div>
-                            <div class="priceold">$5000.00</div>
-                        </div>
-                    </div>
-                </div>
-            </li>
+            @endforeach
         </ul>
     </div>
 </section>
@@ -270,4 +220,46 @@
         <a id="next" class="next" href="#">&gt;</a>
     </div>
 </section>-->
+<script>
+$('.productcart').on('click', function(e) {
+    var cart = $('.carticon');
+    var imgtodrag = $(this).parent('.mainimage').find("img").eq(0);
+    if (imgtodrag) {
+        var imgclone = imgtodrag.clone()
+                .offset({
+                    top: imgtodrag.offset().top,
+                    left: imgtodrag.offset().left
+                })
+                .css({
+                    'opacity': '0.5',
+                    'position': 'absolute',
+                    'height': '150px',
+                    'width': '150px',
+                    'z-index': '100'
+                })
+                .appendTo($('body'))
+                .animate({
+                    'top': cart.offset().top + 10,
+                    'left': cart.offset().left + 10,
+                    'width': 75,
+                    'height': 75
+                }, 1000, 'easeInOutExpo');
+
+        setTimeout(function() {
+            cart.effect("shake", {
+                times: 2
+            }, 200);
+        }, 1500);
+
+        imgclone.animate({
+            'width': 0,
+            'height': 0
+        }, function() {
+            $(this).detach()
+        });
+    }
+    e.preventDefault();
+    return false;
+});
+            </script>
 @stop
