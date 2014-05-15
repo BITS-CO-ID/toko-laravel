@@ -21,6 +21,7 @@ Route::get('/products/{slug}',array('as' => 'showproduct','uses' => 'ProductCont
 Route::get('/{uri}', 'PagesController@view');
 
 Route::post('/products/add_cart/{id}',array('as' => 'add_cart', 'uses' => 'ProductController@add_cart'));
+Route::get('/products/remove_cart/{id}',array('as' => 'remove_cart', 'uses' => 'ProductController@remove_cart'));
 
 // Admin routes
 Route::get('user/login', function() {

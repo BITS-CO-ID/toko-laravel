@@ -58,7 +58,7 @@
                                             <td class="name"><a href="product.html">{{ $row->name }}</a></td>
                                             <td class="quantity">x&nbsp;{{$row->qty}}</td>
                                             <td class="total">{{$row->subtotal}}</td>
-                                            <td class="remove"><i class="icon-remove"></i></td>
+                                            <td class="remove"><a href="{{ route('remove_cart', $row->rowid) }}"><i class="icon-remove"></i></a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>

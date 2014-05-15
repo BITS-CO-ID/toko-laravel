@@ -25,11 +25,16 @@ class ProductController extends \BaseController {
         $data = array(
             'id' => $id,
             'name' => $name->name,
-            'qty' => intval(Input::get('qty')),
+            'qty' => (Input::get('qty') ? Input::get('qty') : 1),
             'price' => $name->unformatted_net_price,
             'options' => $options
         );
         Cart::add($data);
+        return Redirect::back();
+    }
+    
+    public function remove_cart($rowid){
+        Cart::remove($rowid);
         return Redirect::back();
     }
 
