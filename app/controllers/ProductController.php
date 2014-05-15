@@ -19,6 +19,20 @@ class ProductController extends \BaseController {
         $this->layout->content = View::make('products.product_details');
     }
 
+    public function add_cart($id) {
+        $name = $this->product->where('id',$id)->first();
+        $options = Input::except('qty','price','_token');
+        $data = array(
+            'id' => $id,
+            'name' => $name->name,
+            'qty' => intval(Input::get('qty')),
+            'price' => $name->unformatted_net_price,
+            'options' => $options
+        );
+        Cart::add($data);
+        return Redirect::back();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

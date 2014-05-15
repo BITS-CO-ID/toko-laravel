@@ -20,6 +20,8 @@ Route::get('/products',array('as' => 'products' ,'uses' => 'ProductController@in
 Route::get('/products/{slug}',array('as' => 'showproduct','uses' => 'ProductController@show'));
 Route::get('/{uri}', 'PagesController@view');
 
+Route::post('/products/add_cart/{id}',array('as' => 'add_cart', 'uses' => 'ProductController@add_cart'));
+
 // Admin routes
 Route::get('user/login', function() {
     return View::make('login');

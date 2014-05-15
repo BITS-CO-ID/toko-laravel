@@ -47,32 +47,27 @@
             </div>
             <div class="pull-right">
                 <ul class="nav topcart pull-left">
-                    <li class="dropdown hover carticon "> <a href="#" class="dropdown-toggle" > Shopping Cart <span class="label label-orange font14">1 item(s)</span> - $589.50 <b class="caret"></b></a>
+                    <li class="dropdown hover carticon "> <a href="#" class="dropdown-toggle" > Shopping Cart <span class="label label-orange font14">{{ Cart::count() }} item(s)</span> - {{ Cart::total() }} <b class="caret"></b></a>
                         <ul class="dropdown-menu topcartopen ">
                             <li>
                                 <table>
                                     <tbody>
+                                        @foreach (Cart::content() as $row)
                                         <tr>
                                             <td class="image"><a href="product.html"><img width="50" height="50" src="img/prodcut-40x40.jpg" alt="product" title="product"></a></td>
-                                            <td class="name"><a href="product.html">MacBook</a></td>
-                                            <td class="quantity">x&nbsp;1</td>
-                                            <td class="total">$589.50</td>
+                                            <td class="name"><a href="product.html">{{ $row->name }}</a></td>
+                                            <td class="quantity">x&nbsp;{{$row->qty}}</td>
+                                            <td class="total">{{$row->subtotal}}</td>
                                             <td class="remove"><i class="icon-remove"></i></td>
                                         </tr>
-                                        <tr>
-                                            <td class="image"><a href="product.html"><img width="50" height="50" src="img/prodcut-40x40.jpg" alt="product" title="product"></a></td>
-                                            <td class="name"><a href="product.html">MacBook</a></td>
-                                            <td class="quantity">x&nbsp;1</td>
-                                            <td class="total">$589.50</td>
-                                            <td class="remove"><i class="icon-remove "></i></td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 <table>
                                     <tbody>
-                                        <tr>
+<!--                                        <tr>
                                             <td class="textright"><b>Sub-Total:</b></td>
-                                            <td class="textright">$500.00</td>
+                                            <td class="textright">{{Cart::total() }}</td>
                                         </tr>
                                         <tr>
                                             <td class="textright"><b>Eco Tax (-2.00):</b></td>
@@ -81,10 +76,10 @@
                                         <tr>
                                             <td class="textright"><b>VAT (17.5%):</b></td>
                                             <td class="textright">$87.50</td>
-                                        </tr>
+                                        </tr>-->
                                         <tr>
                                             <td class="textright"><b>Total:</b></td>
-                                            <td class="textright">$589.50</td>
+                                            <td class="textright">{{ Cart::total() }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

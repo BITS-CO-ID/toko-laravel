@@ -27,6 +27,7 @@
                 </ul>
             </div>
             <!-- Right Details-->
+            {{ Form::open(array('action' => array('ProductController@add_cart', $product->id))) }}
             <div class="col-lg-7">
                 <div class="row">
                     <div class="col-lg-12">
@@ -34,6 +35,7 @@
                         <div class="productprice">
                             <div class="productpageprice">
                                 <span class="spiral"></span>{{ $product->net_price }}</div>
+                            {{ Form::hidden('price' , $product->unformatted_net_price) }}
                             <div class="productpageoldprice">Old price : {{ $product->formatted_price }}</div>
                             <!--                            <ul class="rate">
                                                             <li class="on"></li>
@@ -44,24 +46,31 @@
                                                         </ul>-->
                         </div>
                         <div class="quantitybox">
+                            Options :
+                            <div class="clear"></div>
                             @foreach ($product->attributes as $attr)
-                            <select class="{{ $attr->name }}">
+                            <select class="{{ $attr->name }}" name="{{ $attr->name }}">
                                 <option>Select {{ $attr->name }}</option>
                                 @foreach($attr->values as $value)
-                                <option>{{ $value->value }}</option>
+                                <option value="{{ $value->value }}">{{ $value->value }}</option>
                                 @endforeach
                             </select>
                             @endforeach
                             <div class="clear"></div>
+                            Quantity :
+                            <div class="clear"></div>
+                            {{ Form::text('qty') }}
                         </div>
                         <ul class="productpagecart">
-                            <li><a class="cart" href="#">Add to Cart</a>
+                            <li>
+                                {{ Form::submit('Add to Cart',array('class'=>'cart')) }}
                             </li>
                             <!--                            <li><a class="wish" href="#" >Add to Wishlist</a>
                                                         </li>
                                                         <li><a class="comare" href="#" >Add to Compare</a>
                                                         </li>-->
                         </ul>
+                        {{ Form::close() }}
                         <!-- Product Description tab & comments-->
                         <div class="productdesc">
                             <ul class="nav nav-tabs" id="myTab">
@@ -181,8 +190,8 @@
                     @endif
                     <div class="shortlinks">
                         <a class="details" href="{{ route('showproduct', $rel_pro->slug) }}">DETAILS</a>
-<!--                        <a class="wishlist" href="#">WISHLIST</a>
-                        <a class="compare" href="#">COMPARE</a>-->
+                        <!--                        <a class="wishlist" href="#">WISHLIST</a>
+                                                <a class="compare" href="#">COMPARE</a>-->
                     </div>
                     <div class="pricetag">
                         <span class="spiral"></span><a href="#" class="productcart">ADD TO CART</a>
@@ -220,46 +229,4 @@
         <a id="next" class="next" href="#">&gt;</a>
     </div>
 </section>-->
-<script>
-$('.productcart').on('click', function(e) {
-    var cart = $('.carticon');
-    var imgtodrag = $(this).parent('.mainimage').find("img").eq(0);
-    if (imgtodrag) {
-        var imgclone = imgtodrag.clone()
-                .offset({
-                    top: imgtodrag.offset().top,
-                    left: imgtodrag.offset().left
-                })
-                .css({
-                    'opacity': '0.5',
-                    'position': 'absolute',
-                    'height': '150px',
-                    'width': '150px',
-                    'z-index': '100'
-                })
-                .appendTo($('body'))
-                .animate({
-                    'top': cart.offset().top + 10,
-                    'left': cart.offset().left + 10,
-                    'width': 75,
-                    'height': 75
-                }, 1000, 'easeInOutExpo');
-
-        setTimeout(function() {
-            cart.effect("shake", {
-                times: 2
-            }, 200);
-        }, 1500);
-
-        imgclone.animate({
-            'width': 0,
-            'height': 0
-        }, function() {
-            $(this).detach()
-        });
-    }
-    e.preventDefault();
-    return false;
-});
-            </script>
 @stop

@@ -37,6 +37,10 @@ class Product extends Eloquent {
         return 'Rp.' . number_format($this->getAttribute('price') - ($this->getAttribute('price') * floatval(intval($this->getAttribute('discount')) / 100)), 2);
     }
 
+    public function getUnFormattedNetPriceAttribute() {
+        return  $this->getAttribute('price') - ($this->getAttribute('price') * floatval(intval($this->getAttribute('discount')) / 100));
+    }
+
     public function Categories() {
         return $this->belongsTo('Category', 'cat_id');
     }
