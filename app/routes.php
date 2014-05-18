@@ -19,8 +19,10 @@ Route::get('/categories',function(){
 Route::get('/products',array('as' => 'products' ,'uses' => 'ProductController@index'));
 Route::get('/products/{slug}',array('as' => 'showproduct','uses' => 'ProductController@show'));
 Route::get('/{uri}', 'PagesController@view');
+Route::get('/{uri}/{any}', 'PagesController@view');
 
 Route::post('/products/add_cart/{id}',array('as' => 'add_cart', 'uses' => 'ProductController@add_cart'));
+Route::get('/products/add_cart/{id}',array('as' => 'add_cart_get', 'uses' => 'ProductController@add_cart'));
 Route::get('/products/remove_cart/{id}',array('as' => 'remove_cart', 'uses' => 'ProductController@remove_cart'));
 
 // Admin routes

@@ -194,7 +194,7 @@
                                                 <a class="compare" href="#">COMPARE</a>-->
                     </div>
                     <div class="pricetag">
-                        <span class="spiral"></span><a href="#" class="productcart">ADD TO CART</a>
+                        <span class="spiral"></span><a href="{{ route('add_cart_get', $rel_pro->id) }}" class="productcart">ADD TO CART</a>
                         <div class="price">
                             <div class="pricenew">{{ $rel_pro->net_price }}</div>
                             <div class="priceold">{{ $rel_pro->formatted_price }}</div>

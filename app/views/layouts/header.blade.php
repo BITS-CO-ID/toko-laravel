@@ -54,8 +54,8 @@
                                     <tbody>
                                         @foreach (Cart::content() as $row)
                                         <tr>
-                                            <td class="image"><a href="product.html"><img width="50" height="50" src="img/prodcut-40x40.jpg" alt="product" title="product"></a></td>
-                                            <td class="name"><a href="product.html">{{ $row->name }}</a></td>
+                                            <td class="image"><a href="{{ route('showproduct', getSlug($row->name)) }}"><img width="50" height="50" src="{{ asset( $row->options->has('image') ? 'uploads/products/thumbs/small/'.$row->options->image : 'http://placehold.it/50x50' ) }}" alt="product" title="product"></a></td>
+                                            <td class="name"><a href="{{ route('showproduct', getSlug($row->name)) }}">{{ $row->name }}</a></td>
                                             <td class="quantity">x&nbsp;{{$row->qty}}</td>
                                             <td class="total">{{$row->subtotal}}</td>
                                             <td class="remove"><a href="{{ route('remove_cart', $row->rowid) }}"><i class="icon-remove"></i></a></td>

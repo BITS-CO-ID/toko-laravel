@@ -7,6 +7,7 @@ class Page extends Baum\Node {
      *
      * @var string
      */
+    protected static $moveToNewSlug = NULL;
     protected $table = 'pages';
     protected $fillable = array('name', 'slug', 'template', 'status');
     protected $parentColumn = 'parent_id';
@@ -29,11 +30,24 @@ class Page extends Baum\Node {
      *
      * @return mixed
      */
+    protected static function boot() {
+        parent::boot();
+
+        static::saved(function($node) {
+            $node->storeNewSlug();
+        });
+    }
+
+    public function storeNewSlug() {
+        $pslug = Page::find($this->getParentId());
+        Page::where('id', $this->getAttributeFromArray('id'))->update(array('slug' => $pslug->slug.'/'.$this->getAttributeFromArray('slug')));
+    }
+
     public function setSlugAttribute($value) {
         $this->attributes['slug'] = getSlug($value);
     }
-    
-    public function getSlugUrlAttribute(){
+
+    public function getSlugUrlAttribute() {
         return url($this->attributes['slug']);
     }
 

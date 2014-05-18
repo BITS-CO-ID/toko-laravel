@@ -22,6 +22,7 @@ class ProductController extends \BaseController {
     public function add_cart($id) {
         $name = $this->product->where('id',$id)->first();
         $options = Input::except('qty','price','_token');
+        $options['image'] = $name->images->first()->path;
         $data = array(
             'id' => $id,
             'name' => $name->name,
