@@ -63,7 +63,8 @@ return array(
             'sizes' => array(
                 array(65, 57, 'crop', public_path() . '/uploads/products/thumbs/small/', 100),
                 array(270, 200, 'exact', public_path() . '/uploads/products/thumbs/medium/', 100),
-                array(270, 350, 'exact', public_path() . '/uploads/products/thumbs/full/', 100)
+                array(270, 350, 'exact', public_path() . '/uploads/products/thumbs/full/', 100),
+                array(470, 705, 'exact', public_path() . '/uploads/products/thumbs/big/', 100),
             )
         ),
     ),

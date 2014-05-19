@@ -76,7 +76,7 @@
                     @if(count($product->images))
                     <a href="{{ route('showproduct', $product->slug) }}"><img alt="" src="{{ asset('uploads/products/thumbs/medium/'.$product->images->first()->path) }}"></a>
                     @else
-                    <a href="{{ route('showproduct', $product->slug) }}"><img alt="" src="http://placehold.it/350x270"></a>
+                    <a href="{{ route('showproduct', $product->slug) }}"><img alt="" src="http://placehold.it/270x200"></a>
                     @endif
                     <div class="shortlinks">
                         <a class="details" href="{{ route('showproduct', $product->slug) }}">DETAILS</a>

@@ -15,6 +15,8 @@ Route::get('/', array('as' => 'home', 'uses' => 'PagesController@view'));
 Route::get('/categories/{slug}', array('as' => 'category','uses' => 'ProductController@category'));
 Route::get('/products',array('as' => 'products' ,'uses' => 'ProductController@index'));
 Route::get('/products/{slug}',array('as' => 'showproduct','uses' => 'ProductController@show'));
+Route::get('/shoppingcart',array('as' => 'shoppingcart','uses' => 'ProductController@view_cart'));
+Route::post('/shoppingcart/update/{id}',array('as' => 'updatecart','uses' => 'ProductController@update_cart'));
 Route::get('/{uri}', 'PagesController@view');
 Route::get('/{uri}/{any}', 'PagesController@view');
 

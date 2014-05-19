@@ -19,10 +19,14 @@ class ProductController extends \BaseController {
         $this->layout->content = View::make('products.product_details');
     }
 
+    public function view_cart() {
+        $this->layout->content = View::make('widget.shopping_cart');
+    }
+
     public function add_cart($id) {
         $name = $this->product->where('id', $id)->first();
         $options = Input::except('qty', 'price', '_token');
-        $options['image'] = $name->images->first()->path;
+        $options['image'] = $name->images->first() ? $name->images->first()->path : '';
         $data = array(
             'id' => $id,
             'name' => $name->name,
@@ -31,6 +35,15 @@ class ProductController extends \BaseController {
             'options' => $options
         );
         Cart::add($data);
+        return Redirect::back();
+    }
+
+    public function update_cart($id) {
+        $cart = Cart::get($id);
+        $name = $this->product->where('id', $cart->id)->first();
+        $options = Input::except('qty', 'x', '_token', 'y');
+        $options['image'] = $name->images->first()->path;
+        Cart::update($id, array('qty' => Input::get('qty'), 'options' => $options));
         return Redirect::back();
     }
 

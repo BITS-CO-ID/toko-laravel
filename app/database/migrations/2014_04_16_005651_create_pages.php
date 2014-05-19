@@ -18,7 +18,7 @@ class CreatePages extends Migration {
             $table->text('name');
             $table->string('slug')->unique();
             $table->text('description');
-            $table->enum('template', array('Home', 'Page', 'About', 'News'))->default('Page');
+            $table->enum('template', array('Home', 'Page', 'About', 'News','Categories'))->default('Page');
             $table->tinyinteger('status')->default(0);
             $table->integer('parent_id')->nullable();
             $table->integer('lft')->nullable();

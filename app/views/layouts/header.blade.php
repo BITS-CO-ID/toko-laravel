@@ -9,7 +9,7 @@
                                 <ul class="nav" >
                                     <li><a class="home active" href="#">Home</a> </li>
                                     <li><a class="myaccount" href="#">My Account</a> </li>
-                                    <li><a class="shoppingcart" href="#">Shopping Cart</a> </li>
+                                    <li><a class="shoppingcart" href="{{ route('shoppingcart') }}">Shopping Cart</a> </li>
                                     <li><a class="checkout" href="#">CheckOut</a> </li>
                                 </ul>
                             </div>
