@@ -35,7 +35,7 @@ class PagesController extends \BaseController {
     }
 
     private function _home() {
-        $this->data['products'] = Product::take(8)->orderBy('created_at','desc')->get();
+        $this->data['products'] = Product::take(8)->orderBy('created_at', 'desc')->get();
     }
 
     private function _page() {
@@ -44,6 +44,17 @@ class PagesController extends \BaseController {
 
     private function _about() {
         
+    }
+
+    private function _categories($slug = null) {
+        $this->data['categories'] = Category::all();
+        if ($slug != null) {
+            $this->data['products'] = Product::whereHas('categories', function($query) use ($slug) {
+                        $query->where('slug', '=', $slug);
+                    })->paginate(5);
+        } else {
+            $this->data['products'] = Product::paginate(10);
+        }
     }
 
 }

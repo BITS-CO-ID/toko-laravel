@@ -20,8 +20,8 @@ class ProductController extends \BaseController {
     }
 
     public function add_cart($id) {
-        $name = $this->product->where('id',$id)->first();
-        $options = Input::except('qty','price','_token');
+        $name = $this->product->where('id', $id)->first();
+        $options = Input::except('qty', 'price', '_token');
         $options['image'] = $name->images->first()->path;
         $data = array(
             'id' => $id,
@@ -33,10 +33,18 @@ class ProductController extends \BaseController {
         Cart::add($data);
         return Redirect::back();
     }
-    
-    public function remove_cart($rowid){
+
+    public function remove_cart($rowid) {
         Cart::remove($rowid);
         return Redirect::back();
+    }
+
+    public function category($slug) {
+        $this->data['categories'] = Category::all();
+        $this->data['products'] = $this->product->whereHas('categories', function($query) use ($slug) {
+                    $query->where('slug', '=', $slug);
+                })->paginate(5);
+        $this->layout->content = View::make('template.categories', $this->data);
     }
 
     /**

@@ -46,7 +46,7 @@
                     <a href="{{ route('showproduct', $product->slug) }}"><img alt="" src="http://placehold.it/270x350"></a>
                     @endif
                     <div class="shortlinks">
-                        <a class="details" href="#">DETAILS</a>
+                        <a class="details" href="{{ route('showproduct', $product->slug) }}">DETAILS</a>
 <!--                        <a class="wishlist" href="#">WISHLIST</a>
                         <a class="compare" href="#">COMPARE</a>-->
                     </div>

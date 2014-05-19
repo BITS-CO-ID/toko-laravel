@@ -55,7 +55,7 @@ return array(
         'template' => array(
             'type' => 'enum',
             'title' => 'Template',
-            'options' => array('Home', 'Page', 'About', 'News'),
+            'options' => array('Home', 'Page', 'About', 'News','Categories'),
         ),
     ),
 //
@@ -83,7 +83,7 @@ return array(
         'template' => array(
             'type' => 'enum',
             'title' => 'Template',
-            'options' => array('Home', 'Page', 'About', 'News'),
+            'options' => array('Home', 'Page', 'About', 'News','Categories'),
         ),
         'status' => array(
             'type' => 'bool',

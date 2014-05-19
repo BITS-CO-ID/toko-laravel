@@ -39,8 +39,8 @@ class Category extends Baum\Node {
         return $data;
         
     }
-    public function products() {
-        return $this->hasMany('Product');
+    public function Products() {
+        return $this->hasMany('Product','cat_id');
     }
 
 }
