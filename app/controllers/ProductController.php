@@ -20,7 +20,8 @@ class ProductController extends \BaseController {
     }
 
     public function view_cart() {
-        $this->layout->content = View::make('widget.shopping_cart');
+        $this->data['options'] = Attribute::with('Values')->get()->toArray();
+        $this->layout->content = View::make('widget.shopping_cart', $this->data);
     }
 
     public function add_cart($id) {

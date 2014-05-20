@@ -32,6 +32,9 @@
                         <td class="image"><a href="#"><img title="product" alt="product" src="{{ asset( $cart->options->has('image') ? 'uploads/products/thumbs/small/'.$cart->options->image : 'http://placehold.it/50x50' ) }}" height="50" width="50"></a></td>
                         <td  class="name"><a href="{{ route('showproduct', getSlug($cart->name)) }}">{{ $cart->name }}</a></td>
                         <td class="model">
+                            @foreach ($options as $option)
+                                {{ var_dump($option) }}
+                            @endforeach
                             @foreach ($cart->options as $key => $v)
                             @if($key != 'image')
                             {{ Form::label($key, ucfirst($key)) }}
