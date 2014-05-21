@@ -7,13 +7,14 @@ class Attribute extends Eloquent {
     public static $rules = array(
         'name' => 'required|min:4',
     );
-    
+
     public function Products() {
         return $this->belongsToMany('Product', 'product_attr');
     }
-    
-    public function Values(){
-        return $this->hasMany('Attrval','attr_id');
+
+    public function Attrval() {
+        return $this->hasMany('Attrval', 'attr_id');
     }
+
 
 }

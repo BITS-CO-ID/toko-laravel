@@ -8,7 +8,7 @@ class Attrval extends Eloquent {
         'value' => 'required',
     );
     
-    public function attributes() {
+    public function Attributes() {
         return $this->belongsTo('Attribute','attr_id');
     }
 

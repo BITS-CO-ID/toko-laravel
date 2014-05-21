@@ -57,7 +57,19 @@ function getSliders() {
     $html = '';
     $data = Slider::get();
     foreach ($data as $d) {
-        $html .= '<li><img src="'.asset("uploads/sliders/thumbs/full/".$d->image).'" alt="" /></li>';
+        $html .= '<li><img src="' . asset("uploads/sliders/thumbs/full/" . $d->image) . '" alt="" /></li>';
     }
     return $html;
+}
+
+function getSelect($option) {
+    $data = array();
+    $attr = Attribute::with('attrval')->where('name', $option)->get()->toArray();
+    foreach ($attr as $value) {
+        $value = $value['attrval'];
+    }
+    foreach ($value as $val) {
+        $data[$val['value']] = $val['value'];
+    }
+    return $data;
 }

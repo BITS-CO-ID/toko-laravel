@@ -29,18 +29,20 @@
                     @foreach (Cart::content() as $cart)
                     {{ Form::open(array('route' => array('updatecart', $cart->rowid))) }}
                     <tr>
-                        <td class="image"><a href="#"><img title="product" alt="product" src="{{ asset( $cart->options->has('image') ? 'uploads/products/thumbs/small/'.$cart->options->image : 'http://placehold.it/50x50' ) }}" height="50" width="50"></a></td>
+                        <td class="image"><a href="#"><img title="product" alt="product" src="{{ asset( count($cart->product->images) > 0  ? 'uploads/products/thumbs/small/'.$cart->product->images->first()->path : 'http://placehold.it/50x50' ) }}" height="50" width="50"></a></td>
                         <td  class="name"><a href="{{ route('showproduct', getSlug($cart->name)) }}">{{ $cart->name }}</a></td>
                         <td class="model">
-                            @foreach ($options as $option)
-                                {{ var_dump($option) }}
-                            @endforeach
-                            @foreach ($cart->options as $key => $v)
-                            @if($key != 'image')
-                            {{ Form::label($key, ucfirst($key)) }}
-                            {{  Form::select($key, array($v => $v), $v); }}
+                            @if (count($cart->options) > 0)
+                                @foreach ($cart->options as $k => $v)
+                                    {{ Form::label($k, ucfirst($k)) }}
+                                    {{ Form::select($k, getSelect($k),$v) }}
+                                @endforeach
+                            @else
+                                @foreach ($options as $option)
+                                    {{ Form::label($option->name, ucfirst($option->name)) }}
+                                    {{ Form::select($option->name, getSelect($option->name)) }}
+                                @endforeach
                             @endif
-                            @endforeach
                         </td>
                         <td class="quantity"><input type="text" size="1" value="{{ $cart->qty }}" name="qty" class="col-lg-1">
 

@@ -51,7 +51,7 @@
                             @foreach ($product->attributes as $attr)
                             <select class="{{ $attr->name }}" name="{{ $attr->name }}">
                                 <option>Select {{ $attr->name }}</option>
-                                @foreach($attr->values as $value)
+                                @foreach($attr->attrval as $value)
                                 <option value="{{ $value->value }}">{{ $value->value }}</option>
                                 @endforeach
                             </select>
