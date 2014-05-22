@@ -83,7 +83,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="well pull-right buttonwrap"> <a class="btn btn-orange" href="#">View Cart</a> <a class="btn btn-orange" href="#">Checkout</a> </div>
+                                <div class="well pull-right buttonwrap"> <a class="btn btn-orange" href="{{ route('shoppingcart') }}">View Cart</a> <a class="btn btn-orange" href="{{ route('checkout') }}">Checkout</a> </div>
                             </li>
                         </ul>
                     </li>

@@ -21,7 +21,7 @@ class ProductController extends \BaseController {
 
     public function view_cart() {
         $this->data['options'] = Attribute::all();
-        $this->layout->content = View::make('widget.shopping_cart',  $this->data);
+        $this->layout->content = View::make('products.shopping_cart',  $this->data);
     }
 
     public function add_cart($id) {
@@ -44,6 +44,10 @@ class ProductController extends \BaseController {
         $options = Input::except('qty', 'x', '_token', 'y');
         Cart::update($id, array('qty' => Input::get('qty'), 'options' => $options));
         return Redirect::back();
+    }
+    
+    public function checkout(){
+        $this->layout->content = View::make('products.checkout');
     }
 
     public function remove_cart($rowid) {
