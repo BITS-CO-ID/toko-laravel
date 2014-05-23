@@ -68,24 +68,18 @@
                     <div class="sidewidt">
                         <h2 class="heading2"><span>Latest Products</span></h2>
                         <ul class="bestseller">
+                            @foreach($latest as $last)
                             <li>
-                                <img src="img/prodcut-40x40.jpg" alt="product" title="product" height="50" width="50">
-                                <a class="productname" href="product.html"> Product Name</a>
-                                <span class="procategory">Women Accessories</span>
-                                <span class="price">$250</span>
+                                @if(count($last->images))
+                                <img alt="product" title="product" height="50" width="50" src="{{ asset('uploads/products/thumbs/small/'.$last->images->first()->path) }}"></a>
+                                @else 
+                                <img src="http://placehold.it/40x40" alt="product" title="product" height="50" width="50">
+                                @endif
+                                <a class="productname" href="{{ route('showproduct', $last->slug) }}"> {{ $last->name }}</a>
+                                <span class="procategory">{{ $last->categories->name }}</span>
+                                <span class="price">{{ $last->net_price }}</span>
                             </li>
-                            <li>
-                                <img src="img/prodcut-40x40.jpg" alt="product" title="product" height="50" width="50">
-                                <a class="productname" href="product.html"> Product Name</a>
-                                <span class="procategory">Electronics</span>
-                                <span class="price">$250</span>
-                            </li>
-                            <li>
-                                <img src="img/prodcut-40x40.jpg" alt="product" title="product" height="50" width="50">
-                                <a class="productname" href="product.html"> Product Name</a>
-                                <span class="procategory">Electronics</span>
-                                <span class="price">$250</span>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                     <!--  Must have -->  
@@ -93,18 +87,50 @@
                         <h2 class="heading2"><span>Must have</span></h2>
                         <div class="flexslider" id="mainslider">
 
-                            <div style="overflow: hidden; position: relative;" class="flex-viewport"><ul style="width: 800%; transition-duration: 0s; transform: translate3d(-270px, 0px, 0px);" class="slides"><li style="width: 270px; float: left; display: block;" class="clone">
-                                        <img src="img/product2.jpg" alt="">
-                                    </li>
+                            <div style="overflow: hidden; position: relative;" class="flex-viewport">
+                                <ul style="width: 800%; transition-duration: 0s; transform: translate3d(-270px, 0px, 0px);" class="slides">
+                                    @if ($i=0) @endif
+                                    @foreach ($musthave as $must)
+                                    @if ($i === 0)
                                     <li class="flex-active-slide" style="width: 270px; float: left; display: block;">
-                                        <img src="img/product1.jpg" alt="">
+                                        @if(count($must->images))
+                                        <img alt="product" src="{{ asset('uploads/products/thumbs/medium/'.$must->images->first()->path) }}"></a>
+                                        @else 
+                                        <img src="http://placehold.it/270x40" alt="product" title="product" height="50" width="50">
+                                        @endif
+<!--                                        <img src="img/product1.jpg" alt="">-->
                                     </li>
-                                    <li class="" style="width: 270px; float: left; display: block;">
-                                        <img src="img/product2.jpg" alt="">
+                                    @else
+                                    <li style="width: 270px; float: left; display: block;" class="clone">
+                                        @if(count($must->images))
+                                        <img alt="product" src="{{ asset('uploads/products/thumbs/medium/'.$must->images->first()->path) }}"></a>
+                                        @else 
+                                        <img src="http://placehold.it/270x200" alt="product" title="product" height="50" width="50">
+                                        @endif
                                     </li>
-                                    <li class="clone" style="width: 270px; float: left; display: block;">
-                                        <img src="img/product1.jpg" alt="">
-                                    </li></ul></div><ol class="flex-control-nav flex-control-paging"><li><a class="flex-active">1</a></li><li><a class="">2</a></li></ol><ul class="flex-direction-nav"><li><a class="flex-prev" href="#">Previous</a></li><li><a class="flex-next" href="#">Next</a></li></ul></div>
+                                    @endif
+                                    <!--                                    <li class="flex-active-slide" style="width: 270px; float: left; display: block;">
+                                                               <img src="img/product1.jpg" alt="">
+                                                           </li>
+                                                           <li class="" style="width: 270px; float: left; display: block;">
+                                                               <img src="img/product2.jpg" alt="">
+                                                           </li>
+                                                           <li class="clone" style="width: 270px; float: left; display: block;">
+                                                               <img src="img/product1.jpg" alt="">
+                                                           </li>-->
+                                    @if ($i++) @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <!--                            <ol class="flex-control-nav flex-control-paging">
+                                                            <li><a class="flex-active">1</a></li>
+                                                            <li><a class="">2</a></li>
+                                                        </ol>-->
+                            <ul class="flex-direction-nav">
+                                <li><a class="flex-prev" href="#">Previous</a></li>
+                                <li><a class="flex-next" href="#">Next</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </aside>
                 <!-- Sidebar End-->
@@ -192,8 +218,8 @@
                                                 </div>
                                                 <div class="shortlinks">
                                                     <a class="details" href="{{ route('showproduct', $product->slug) }}">DETAILS</a>
-<!--                                                    <a class="wishlist" href="#">WISHLIST</a>
-                                                    <a class="compare" href="#">COMPARE</a>-->
+                                                    <!--                                                    <a class="wishlist" href="#">WISHLIST</a>
+                                                                                                        <a class="compare" href="#">COMPARE</a>-->
                                                 </div>
                                             </div>
                                         </div>

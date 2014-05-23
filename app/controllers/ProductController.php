@@ -57,6 +57,8 @@ class ProductController extends \BaseController {
 
     public function category($slug) {
         $this->data['categories'] = Category::all();
+        $this->data['latest'] = $this->product->take(4)->orderBy('created_at','desc')->get();
+        $this->data['musthave'] = $this->product->take(4)->orderBy(DB::raw('RAND()'))->get();
         $this->data['products'] = $this->product->whereHas('categories', function($query) use ($slug) {
                     $query->where('slug', '=', $slug);
                 })->paginate(5);
