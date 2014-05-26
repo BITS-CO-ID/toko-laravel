@@ -56,26 +56,28 @@ class ProductController extends \BaseController {
     }
 
     public function category($slug = null) {
-        $data = Input::get('data');
         $this->data['categories'] = Category::all();
         $this->data['latest'] = $this->product->take(4)->orderBy('created_at', 'desc')->get();
         $this->data['musthave'] = $this->product->take(4)->orderBy(DB::raw('RAND()'))->get();
-        if (Request::ajax()) {
-            $this->data['products'] = $this->product->whereHas('categories', function($query) use ($slug) {
-                        $query->where('slug', '=', $slug);
-                    })->orderBy($data)->paginate(5);
-        }
-        $this->data['products'] = $this->product->whereHas('categories', function($query) use ($slug) {
-                    $query->where('slug', '=', $slug);
-                })->paginate(5);
-        if ($slug != null) {
-            $this->data['products'] = Product::whereHas('categories', function($query) use ($slug) {
-                        $query->where('slug', '=', $slug);
-                    })->paginate(5);
+        if (!Request::ajax()) {
+            if ($slug != null) {
+                $this->data['products'] = Product::whereHas('categories', function($query) use ($slug) {
+                            $query->where('slug', '=', $slug);
+                        })->paginate(5);
+            } else {
+                $this->data['products'] = Product::paginate(5);
+            }
+            $this->layout->content = View::make('template.categories', $this->data);
         } else {
-            $this->data['products'] = Product::paginate(10);
+            if ($slug != null) {
+                $this->data['products'] = Product::whereHas('categories', function($query) use ($slug) {
+                            $query->where('slug', '=', $slug);
+                        })->orderBy(Input::get('data') == '' ? 'created_at' : Input::get('data'),'asc')->paginate(Input::get('num'));
+            } else {
+                $this->data['products'] = Product::orderBy(Input::get('data') == '' ? 'created_at' : Input::get('data'),'asc')->paginate(Input::get('num'));
+            }
+            return View::make('products.results', $this->data)->render();
         }
-        $this->layout->content = View::make('template.categories', $this->data);
     }
 
     /**

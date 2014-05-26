@@ -61,12 +61,28 @@
             <script src="{{ asset('front/js/jquery.isotope.min.js') }}"></script> 
             <script src="{{ asset('front/js/custom.js') }}"></script>
             <script>
-            $("#sorting").change(function(e) {
-                $.post("{{ url('categories') }}", {data: $(this).val()}, function(data) {
-                    $('#categorygrid').html(data);
-                }, 'html');
-                e.preventDefault();
-            });
+$("#sorting").change(function(e) {
+    $.get("{{ url('categories') }}", {data: $(this).val(), num: $("#num").val()}, function(data) {
+        $('#categorygrid').html(data);
+    }, 'html');
+    e.preventDefault();
+});
+$("#num").change(function(e) {
+    $.get("{{ url('categories') }}", {data: $("#sorting").val(), num: $(this).val()}, function(data) {
+        $('#categorygrid').html(data);
+    }, 'html');
+    e.preventDefault();
+});
+            </script>
+            <script>
+                $('.pagination a').on('click', function(event) {
+                    var telo = $(this).attr('href') + '&data=' + $('#sorting').val() + '&num=' + $('#num').val();
+                    if ($(this).attr('href') != '#') {
+                        $("html, body").animate({scrollTop: 0}, "fast");
+                        $('#categorygrid').load(telo);
+                    }
+                    event.preventDefault();
+                });
             </script>
     </body>
 </html>

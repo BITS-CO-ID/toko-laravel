@@ -149,8 +149,8 @@
                                 </select>
                                 &nbsp;&nbsp;
                                 Show:
-                                <select>
-                                    <option>10</option>
+                                <select id="num">
+                                    <option>1</option>
                                     <option>15</option>
                                     <option>20</option>
                                     <option>25</option>
@@ -227,21 +227,6 @@
                             </ul>
                             <div>
                                 <?php echo $products->links(); ?>
-                                <ul class="pagination pull-right">
-                                    <li><a href="#">Prev</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">1</a>
-                                    </li>
-                                    <li><a href="#">2</a>
-                                    </li>
-                                    <li><a href="#">3</a>
-                                    </li>
-                                    <li><a href="#">4</a>
-                                    </li>
-                                    <li><a href="#">Next</a>
-                                    </li>
-                                </ul>
                             </div>
                         </section>
                     </section>
