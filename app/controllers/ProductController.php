@@ -21,7 +21,7 @@ class ProductController extends \BaseController {
 
     public function view_cart() {
         $this->data['options'] = Attribute::all();
-        $this->layout->content = View::make('products.shopping_cart',  $this->data);
+        $this->layout->content = View::make('products.shopping_cart', $this->data);
     }
 
     public function add_cart($id) {
@@ -45,8 +45,8 @@ class ProductController extends \BaseController {
         Cart::update($id, array('qty' => Input::get('qty'), 'options' => $options));
         return Redirect::back();
     }
-    
-    public function checkout(){
+
+    public function checkout() {
         $this->layout->content = View::make('products.checkout');
     }
 
@@ -55,13 +55,26 @@ class ProductController extends \BaseController {
         return Redirect::back();
     }
 
-    public function category($slug) {
+    public function category($slug = null) {
+        $data = Input::get('data');
         $this->data['categories'] = Category::all();
-        $this->data['latest'] = $this->product->take(4)->orderBy('created_at','desc')->get();
+        $this->data['latest'] = $this->product->take(4)->orderBy('created_at', 'desc')->get();
         $this->data['musthave'] = $this->product->take(4)->orderBy(DB::raw('RAND()'))->get();
+        if (Request::ajax()) {
+            $this->data['products'] = $this->product->whereHas('categories', function($query) use ($slug) {
+                        $query->where('slug', '=', $slug);
+                    })->orderBy($data)->paginate(5);
+        }
         $this->data['products'] = $this->product->whereHas('categories', function($query) use ($slug) {
                     $query->where('slug', '=', $slug);
                 })->paginate(5);
+        if ($slug != null) {
+            $this->data['products'] = Product::whereHas('categories', function($query) use ($slug) {
+                        $query->where('slug', '=', $slug);
+                    })->paginate(5);
+        } else {
+            $this->data['products'] = Product::paginate(10);
+        }
         $this->layout->content = View::make('template.categories', $this->data);
     }
 

@@ -60,5 +60,13 @@
             <script type="text/javascript"  src="{{ asset('front/js/jquery.ba-throttle-debounce.min.js') }}"></script> 
             <script src="{{ asset('front/js/jquery.isotope.min.js') }}"></script> 
             <script src="{{ asset('front/js/custom.js') }}"></script>
+            <script>
+            $("#sorting").change(function(e) {
+                $.post("{{ url('categories') }}", {data: $(this).val()}, function(data) {
+                    $('#categorygrid').html(data);
+                }, 'html');
+                e.preventDefault();
+            });
+            </script>
     </body>
 </html>

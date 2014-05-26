@@ -47,16 +47,6 @@ class PagesController extends \BaseController {
     }
 
     private function _categories($slug = null) {
-        $this->data['categories'] = Category::all();
-        $this->data['latest'] = Product::take(4)->orderBy('created_at','desc')->get();
-        $this->data['musthave'] = Product::take(4)->orderBy(DB::raw('RAND()'))->get();
-        if ($slug != null) {
-            $this->data['products'] = Product::whereHas('categories', function($query) use ($slug) {
-                        $query->where('slug', '=', $slug);
-                    })->paginate(5);
-        } else {
-            $this->data['products'] = Product::paginate(10);
-        }
     }
 
 }

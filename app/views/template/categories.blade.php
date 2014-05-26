@@ -142,12 +142,10 @@
                         <div class="sorting well">
                             <form class=" form-inline pull-left">
                                 Sort By :
-                                <select>
-                                    <option>Default</option>
-                                    <option>Name</option>
-                                    <option>Pirce</option>
-                                    <option>Rating </option>
-                                    <option>Color</option>
+                                <select id="sorting">
+                                    <option value="created_at">Default</option>
+                                    <option value="name">Name</option>
+                                    <option value="price">Price</option>
                                 </select>
                                 &nbsp;&nbsp;
                                 Show:

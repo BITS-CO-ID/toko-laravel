@@ -12,19 +12,21 @@
  */
 // front Routes
 Route::get('/', array('as' => 'home', 'uses' => 'PagesController@view'));
-Route::get('/categories/{slug}', array('as' => 'category','uses' => 'ProductController@category'));
+Route::get('/categories/{slug}', array('as' => 'category', 'uses' => 'ProductController@category'));
+Route::get('/categories', 'ProductController@category');
+Route::post('/categories', array('as' => 'sort_category', 'uses' => 'ProductController@category'));
 
-Route::get('/products',array('as' => 'products' ,'uses' => 'ProductController@index'));
-Route::get('/products/{slug}',array('as' => 'showproduct','uses' => 'ProductController@show'));
+Route::get('/products', array('as' => 'products', 'uses' => 'ProductController@index'));
+Route::get('/products/{slug}', array('as' => 'showproduct', 'uses' => 'ProductController@show'));
 
-Route::post('/products/add_cart/{id}',array('as' => 'add_cart', 'uses' => 'ProductController@add_cart'));
-Route::get('/products/add_cart/{id}',array('as' => 'add_cart_get', 'uses' => 'ProductController@add_cart'));
-Route::get('/products/remove_cart/{id}',array('as' => 'remove_cart', 'uses' => 'ProductController@remove_cart'));
+Route::post('/products/add_cart/{id}', array('as' => 'add_cart', 'uses' => 'ProductController@add_cart'));
+Route::get('/products/add_cart/{id}', array('as' => 'add_cart_get', 'uses' => 'ProductController@add_cart'));
+Route::get('/products/remove_cart/{id}', array('as' => 'remove_cart', 'uses' => 'ProductController@remove_cart'));
 
-Route::get('/shoppingcart',array('as' => 'shoppingcart','uses' => 'ProductController@view_cart'));
-Route::post('/shoppingcart/update/{id}',array('as' => 'updatecart','uses' => 'ProductController@update_cart'));
+Route::get('/shoppingcart', array('as' => 'shoppingcart', 'uses' => 'ProductController@view_cart'));
+Route::post('/shoppingcart/update/{id}', array('as' => 'updatecart', 'uses' => 'ProductController@update_cart'));
 
-Route::get('/checkout',array('as' => 'checkout','uses' => 'ProductController@checkout'));
+Route::get('/checkout', array('as' => 'checkout', 'uses' => 'ProductController@checkout'));
 
 Route::get('/{uri}', 'PagesController@view');
 Route::get('/{uri}/{any}', 'PagesController@view');
