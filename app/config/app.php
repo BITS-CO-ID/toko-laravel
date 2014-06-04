@@ -97,7 +97,8 @@ return array(
         'Frozennode\Administrator\AdministratorServiceProvider',
         'Cartalyst\Sentry\SentryServiceProvider',
         'Purposemedia\Menu\MenuServiceProvider',
-        'Gloudemans\Shoppingcart\ShoppingcartServiceProvider'
+        'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
+        'Artdarek\OAuth\OAuthServiceProvider'
     ),
     /*
       |--------------------------------------------------------------------------
@@ -161,5 +162,6 @@ return array(
         'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
         'Menu' => 'Purposemedia\Menu\Facades\Menu',
         'Cart' => 'Gloudemans\Shoppingcart\Facades\Cart',
+        'OAuth' => 'Artdarek\OAuth\Facade\OAuth',
     ),
 );

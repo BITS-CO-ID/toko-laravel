@@ -78,3 +78,21 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+View::composer(array('administrator::layouts.default'), function($view)
+{
+    //first check if this is a custom page
+    if ($view->page === 'test')
+    {
+        //add page-specific assets
+        $view->js += array(
+            'boostrap' => '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
+            'twitter' => asset('front/js/twitter.js')
+        );
+
+        $view->css += array(
+            'boostrap' => '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
+            'mycss' => asset('front/css/fb.css')
+        );
+    }
+});

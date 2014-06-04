@@ -9,7 +9,8 @@
         "baum/baum": "~1.0",
         "cartalyst/sentry": "2.1.*",
         "purposemedia/menu" : "dev-master",
-        "gloudemans/shoppingcart": "dev-master"
+        "gloudemans/shoppingcart": "dev-master",
+        "artdarek/oauth-4-laravel": "dev-master"
 
     },
     "autoload": {
